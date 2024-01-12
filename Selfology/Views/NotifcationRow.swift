@@ -17,35 +17,31 @@ struct NotifcationRow: View {
                 .fill(Color.gray.opacity(0.2))
                 .shadow(radius: 5)
 
-            VStack {
-                HStack() {
-                    Toggle(isOn: $item.isOn) {
-                        EmptyView()
-                    }
+            HStack {
+                Toggle(isOn: $item.isOn) {
+                    EmptyView()
+                }
+                    .labelsHidden()
                     .toggleStyle(SwitchToggleStyle(tint: .gray))
-//                    .padding()
-                    Spacer()
-                    
-                    VStack(alignment: .leading) {
-                        Text(item.time)
-                            .bold()
-                        Text(item.taskName)
-                    }
-                    Spacer()
+
+                Text(item.time)
+
+                Text(item.taskName)
+
+            }
+
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation {
+                    showDescription.toggle()
                 }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    withAnimation {
-                        showDescription.toggle()
-                    }
-                }
-                
-                if showDescription {
-                    Text(item.description)
-                        .foregroundColor(.gray)
-                        .transition(.slide)
-                        .padding([.bottom, .horizontal])
-                }
+            }
+            
+            if showDescription {
+                Text(item.description)
+                    .foregroundColor(.gray)
+                    .transition(.slide)
+                    .padding([.bottom, .horizontal])
             }
         }
         .frame(height: showDescription ? nil : 50)
