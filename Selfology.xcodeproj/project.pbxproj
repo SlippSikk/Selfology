@@ -81,10 +81,10 @@
 		960B55EF2B4FCC77001A89D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				960B56012B50C87C001A89D8 /* Notification */,
 				960B55E32B4FB43C001A89D8 /* ContentView.swift */,
 				960B55F02B4FCCB7001A89D8 /* NotificationPage.swift */,
 				960B55F42B4FCCFE001A89D8 /* CreateNotifcationPage.swift */,
-				960B55FB2B4FCDFC001A89D8 /* NotifcationRow.swift */,
 				960B55FD2B50093E001A89D8 /* PlusButton.swift */,
 			);
 			path = Views;
@@ -96,6 +96,14 @@
 				960B55FF2B500F39001A89D8 /* NotificationItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		960B56012B50C87C001A89D8 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				960B55FB2B4FCDFC001A89D8 /* NotifcationRow.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
