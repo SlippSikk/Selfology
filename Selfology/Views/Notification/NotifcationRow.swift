@@ -11,40 +11,53 @@ struct NotifcationRow: View {
     @Binding var item: NotificationItem
     @State private var showDescription = false
     
+    let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
-    
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
-                    .fill(Color.gray.opacity(0.2))
+                    .fill(Color.gray.opacity(0.11))
                     .shadow(radius: 5)
 
                 HStack {
+                    Spacer()
                     Toggle(isOn: $item.isOn) {
                         EmptyView()
                     }
                     .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: .gray))
-                    .padding(.leading, 7)
-                    Spacer()
+                    .toggleStyle(SwitchToggleStyle(tint: customGray))
+//                    .padding(.leading, 7)
+                    
+                    Spacer(minLength: 25)
 
                     // Time capsule
-                    Text(item.time)
-                        .padding(5)
+                    Text(formatDate(item.time))
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))                        
+                        .font(.subheadline)
+                        .frame(width: 80, height: 31)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.gray, lineWidth: 1)
+                                .stroke(customGray, lineWidth: 1)
                         )
-
+                    
+                    Spacer(minLength: 25)
+                    
                     // Task name capsule
                     Text(item.taskName)
-                        .padding(5)
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)) // Adjust padding as needed
+                        .frame(width: 160, height: 31)
+                        .font(.subheadline)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
-                                .stroke(Color.gray, lineWidth: 1)
+                                .stroke(customGray, lineWidth: 1)
                         )
                         
+
+                    Spacer() // Flexible space
+                    
+                    // Invisible spacer to balance the leading padding
+//                    Spacer().frame(width: 7).hidden()
                         
                 }
             }
@@ -66,10 +79,16 @@ struct NotifcationRow: View {
         .frame(height: showDescription ? nil : 50)
         .padding(.horizontal)
     }
+    
+    private func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
 
 }
 
 #Preview {
 
-    NotifcationRow(item: .constant(NotificationItem(isOn: true, time: "6:00 AM", taskName: "MORNING MEDITATION", description: "Description here")))
+    NotifcationRow(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Description here")))
 }
