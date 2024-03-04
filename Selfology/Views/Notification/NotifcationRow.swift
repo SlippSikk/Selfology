@@ -29,13 +29,10 @@ struct NotificationRow: View {
                         }
                         .labelsHidden()
                         .toggleStyle(SwitchToggleStyle(tint: customGray))
-                        //                    .padding(.leading, 7)
-                        
                         Spacer(minLength: 25)
                         
                         // Time capsule
                         Text(formatDate(item.time))
-//                            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                             .font(.subheadline)
                             .frame(width: 80, height: 31)
                             .background(
@@ -47,7 +44,6 @@ struct NotificationRow: View {
                         
                         // Task name capsule
                         Text(item.taskName)
-//                            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)) // Adjust padding as needed
                             .frame(width: 160, height: 31)
                             .font(.subheadline)
                             .background(
@@ -55,11 +51,8 @@ struct NotificationRow: View {
                                     .stroke(customGray, lineWidth: 1)
                             )
                         
-                        
-//                        Spacer(min) // Flexible space
-                        
                         // Invisible spacer to balance the leading padding
-                                            Spacer().frame(width: 7).hidden()
+                            Spacer().frame(width: 7).hidden()
                     }
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
@@ -68,7 +61,8 @@ struct NotificationRow: View {
                             .font(.subheadline)
                             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .transition(.move(edge: .bottom).combined(with: .opacity))
+//                            .transition(.opacity)
+//                            .transition(.move(edge: .top).combined(with: .opacity))
                             
                         
                         Button(action: {
@@ -107,5 +101,10 @@ struct NotificationRow: View {
 
 #Preview {
 
-    NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ")))
+    return Group {
+        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ")))
+        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ")))
+    }
+
+    
 }
