@@ -16,14 +16,16 @@ struct NotificationItem: Identifiable, Codable {
 //    var repeatSchedule: RepeatSchedule
 }
 
-
 enum RepeatSchedule: String, Codable, CaseIterable {
-    case everyDay = "Every Day"
-    case everyMonday = "Every Monday"
-    case everyTuesday = "Every Tuesday"
-    case everyWednesday = "Every Wednesday"
-    case everyThursday = "Every Thursday"
-    case everyFriday = "Every Friday"
-    case everySaturday = "Every Saturday"
-    case everySunday = "Every Sunday"
+    case everyDay = "EVERY DAY"
+    case everyMonday = "EVERY MONDAY"
+    case everyTuesday = "EVERY TUESDAY"
+    case everyWednesday = "EVERY WEDNESDAY"
+    case everyThursday = "EVERY THURSDAY"
+    case everyFriday = "EVERY FRIDAY"
+    case everySaturday = "EVERY SATURDAY"
+    case everySunday = "EVERY SUNDAY"
 }
+
+
+

@@ -10,8 +10,7 @@ import SwiftUI
 struct ReminderView: View {
     @State private var selectedDate = Date()
     @State private var taskName = "TASK NAME"
-    @State private var repeatFrequency = "EVERY DAY"
-    let chooseFrequency = ["EVERY DAY", "EVERY MONDAY", "EVERY TUESDAY", "EVERY WEDNESDAY", "EVERY THURSDAY", "EVERY FRIDAY", "EVERY SATURDAY", "EVERY SUNDAY"]
+    @State private var repeatFrequency = RepeatSchedule.everyDay
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
     
@@ -41,8 +40,8 @@ struct ReminderView: View {
                         .listRowBackground(Color.gray.opacity(0.11))
                         
                         Picker("Repeat", selection: $repeatFrequency) {
-                            ForEach(chooseFrequency, id: \.self) { frequency in
-                                Text(frequency).tag(frequency)
+                            ForEach(RepeatSchedule.allCases, id: \.self) { frequency in
+                                Text(frequency.rawValue).tag(frequency)
                             }
                         }
                         .listRowBackground(Color.gray.opacity(0.11))

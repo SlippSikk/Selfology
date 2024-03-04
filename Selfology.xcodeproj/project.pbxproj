@@ -16,7 +16,7 @@
 		960B55FC2B4FCDFC001A89D8 /* NotifcationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B55FB2B4FCDFC001A89D8 /* NotifcationRow.swift */; };
 		960B55FE2B50093E001A89D8 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B55FD2B50093E001A89D8 /* PlusButton.swift */; };
 		960B56002B500F39001A89D8 /* NotificationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960B55FF2B500F39001A89D8 /* NotificationItem.swift */; };
-		9E4DAE6E2B7C625C00C3DAB2 /* CreateNotificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4DAE6D2B7C625C00C3DAB2 /* CreateNotificationPage.swift */; };
+		9E3DB4F72B95E12C00E527CD /* notificationItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E3DB4F62B95E12C00E527CD /* notificationItems.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +30,7 @@
 		960B55FB2B4FCDFC001A89D8 /* NotifcationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifcationRow.swift; sourceTree = "<group>"; };
 		960B55FD2B50093E001A89D8 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		960B55FF2B500F39001A89D8 /* NotificationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationItem.swift; sourceTree = "<group>"; };
-		9E4DAE6D2B7C625C00C3DAB2 /* CreateNotificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNotificationPage.swift; sourceTree = "<group>"; };
+		9E3DB4F62B95E12C00E527CD /* notificationItems.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = notificationItems.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +65,7 @@
 			children = (
 				960B55E12B4FB43C001A89D8 /* SelfologyApp.swift */,
 				960B55EF2B4FCC77001A89D8 /* Views */,
+				9E3DB4F52B95E10C00E527CD /* Resources */,
 				960B55F62B4FCD42001A89D8 /* Model */,
 				960B55E52B4FB43E001A89D8 /* Assets.xcassets */,
 				960B55E72B4FB43E001A89D8 /* Preview Content */,
@@ -104,9 +105,16 @@
 				960B55FB2B4FCDFC001A89D8 /* NotifcationRow.swift */,
 				960B55F02B4FCCB7001A89D8 /* NotificationPage.swift */,
 				960B55F42B4FCCFE001A89D8 /* CreateNotification.swift */,
-				9E4DAE6D2B7C625C00C3DAB2 /* CreateNotificationPage.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		9E3DB4F52B95E10C00E527CD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9E3DB4F62B95E12C00E527CD /* notificationItems.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960B55E92B4FB43E001A89D8 /* Preview Assets.xcassets in Resources */,
+				9E3DB4F72B95E12C00E527CD /* notificationItems.json in Resources */,
 				960B55E62B4FB43E001A89D8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,7 +195,6 @@
 				960B55FE2B50093E001A89D8 /* PlusButton.swift in Sources */,
 				960B55F52B4FCCFE001A89D8 /* CreateNotification.swift in Sources */,
 				960B55FC2B4FCDFC001A89D8 /* NotifcationRow.swift in Sources */,
-				9E4DAE6E2B7C625C00C3DAB2 /* CreateNotificationPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
