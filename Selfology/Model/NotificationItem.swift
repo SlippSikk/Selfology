@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct NotificationItem: Identifiable, Codable {
+struct NotificationItem: Hashable, Identifiable, Codable {
     var id: UUID = UUID()
     var isOn: Bool
     var time: Date
     var taskName: String
     var description: String
-//    var repeatSchedule: RepeatSchedule
+    var repeatSchedule: RepeatSchedule
 }
 
 enum RepeatSchedule: String, Codable, CaseIterable {
