@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var notificationsManager: NotificationsManager
+    
     var body: some View {
         NotificationPage()
     }
@@ -15,4 +17,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(NotificationsManager())
 }

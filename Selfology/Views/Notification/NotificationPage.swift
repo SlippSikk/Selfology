@@ -18,12 +18,18 @@ struct NotificationPage: View {
                     Spacer()
                     PlusButton()
                 }
+                .padding(.bottom, 35)
+                ScrollView {
+                    NotificationList()
+                
+                }
                 Spacer()
                 Image("blacklogo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 75, height: 75)
                     .padding(.bottom, 20)
+                    .padding(.top, 39)
             }
         }
     }
@@ -31,4 +37,5 @@ struct NotificationPage: View {
 
 #Preview {
     NotificationPage()
+        .environmentObject(NotificationsManager())
 }

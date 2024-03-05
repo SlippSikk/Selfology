@@ -17,7 +17,7 @@ struct NotificationRow: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
-                    .fill(Color.gray.opacity(showDescription ? 0.09 : 0.03))
+                    .fill(Color.gray.opacity(showDescription ? 0.05 : 0.00))
                     .shadow(radius: showDescription ? 0 : 5)
                     .animation(.easeInOut, value: showDescription)
                 
@@ -29,6 +29,7 @@ struct NotificationRow: View {
                         }
                         .labelsHidden()
                         .toggleStyle(SwitchToggleStyle(tint: customGray))
+                        
                         Spacer(minLength: 25)
                         
                         // Time capsule
@@ -102,8 +103,8 @@ struct NotificationRow: View {
 #Preview {
 
     return Group {
-        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ")))
-        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ")))
+        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyMonday)))
+        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyTuesday)))
     }
 
     
