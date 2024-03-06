@@ -12,8 +12,9 @@ struct ReminderView: View {
     @State private var taskName = "TASK NAME"
     @State private var repeatFrequency = RepeatSchedule.everyDay
     @State var item: NotificationItem
-    @ObservedObject var notificationsManager: NotificationsManager
+    @EnvironmentObject var notificationsManager: NotificationsManager
     @Environment(\.presentationMode) var presentationMode
+    
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
     
@@ -102,10 +103,12 @@ struct ReminderView_Previews: PreviewProvider {
         // Create an instance of NotificationsManager
         let notificationsManager = NotificationsManager()
 
-        // Pass the notificationsManager instance to the ReminderView
         Group {
-            ReminderView(item: NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: .everyMonday), notificationsManager: notificationsManager)
-            ReminderView(item: NotificationItem(isOn: true, time: Date(), taskName: "Exercise", description: "Morning exercise session to energize the body for the day ahead.", repeatSchedule: .everyTuesday), notificationsManager: notificationsManager)
+            ReminderView(item: NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: .everyMonday))
+            .environmentObject(notificationsManager) // Provide the notificationsManager as an EnvironmentObject
+            ReminderView(item: NotificationItem(isOn: true, time: Date(), taskName: "Exercise", description: "Morning exercise session to energize the body for the day ahead.", repeatSchedule: .everyTuesday))
+            .environmentObject(notificationsManager) // Provide the notificationsManager as an EnvironmentObject
         }
     }
 }
+
