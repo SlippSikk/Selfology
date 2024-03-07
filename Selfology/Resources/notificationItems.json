@@ -20,7 +20,7 @@
         "isOn": true,
         "time": "2024-03-01T18:00:00Z",
         "taskName": "Evening Walk",
-        "description": "Go for a 30-minute walk in the neighborhood.",
+        "description": "Go for a 30-minute walk in the neighborhood. This exercise will greatly increase cardiovasuclar endurance. Be sure to eat enough carbs throughout the day to power you through. DO NOT FORGET water bottle as hydration is KEY!!!",
         "repeatSchedule": "EVERY DAY"
     },
     {
@@ -28,7 +28,7 @@
         "isOn": true,
         "time": "2024-03-01T21:00:00Z",
         "taskName": "Reading Time",
-        "description": "Read for an hour before bed.",
+        "description": "Read for an hour before bed. Write a one page summary on what you read and reflect. Use pen and paper",
         "repeatSchedule": "EVERY DAY"
     }
 ]
