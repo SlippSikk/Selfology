@@ -10,6 +10,7 @@ import SwiftUI
 struct NotificationRow: View {
     @State var item: NotificationItem
     @State private var showDescription = false
+    @EnvironmentObject var notificationsManager: NotificationsManager
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
@@ -29,6 +30,9 @@ struct NotificationRow: View {
                         }
                         .labelsHidden()
                         .toggleStyle(SwitchToggleStyle(tint: customGray))
+                        .onChange(of: item.isOn) { newValue in
+                            notificationsManager.toggleNotification(isOn: newValue, for: item.id)
+                        }
                         
                         Spacer(minLength: 25)
                         
@@ -65,17 +69,14 @@ struct NotificationRow: View {
 //                            .transition(.opacity)
 //                            .transition(.move(edge: .top).combined(with: .opacity))
                             
-                        
-                        Button(action: {
-                            // Define the action here.
-                            // Since you want no action for now, you can leave this closure empty.
-                        }) {
+                        NavigationLink(destination: ReminderView(item: item)) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
+
                     }
                 }
             }
@@ -102,10 +103,10 @@ struct NotificationRow: View {
 
 #Preview {
 
-    return Group {
-        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyMonday)))
-        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyTuesday)))
-    }
+
+    NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyMonday)))
+        .environmentObject(NotificationsManager())
+
 
     
 }

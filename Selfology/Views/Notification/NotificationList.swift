@@ -11,9 +11,12 @@ struct NotificationList: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
     var body: some View {
         let noti = notificationsManager.notifications
-        ForEach(noti) { item in
-            NotificationRow(item: item)
-                .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
+        
+        NavigationStack {
+            ForEach(noti) { item in
+                NotificationRow(item: item)
+                    .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
+            }
         }
     }
 }

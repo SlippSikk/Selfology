@@ -36,7 +36,7 @@ struct ReminderView: View {
                             
                                 .foregroundColor(.black)
                             Spacer()
-                            TextField("TASK NAME", text: $taskName)
+                            TextField("TASK NAME", text: $item.taskName)
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(.gray)
                             
@@ -62,7 +62,7 @@ struct ReminderView: View {
                             Text("DELETE NOTIFICATION")
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .foregroundColor(.red)
-                                
+                            
                         }
                         
                     }
