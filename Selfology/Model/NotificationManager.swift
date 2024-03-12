@@ -9,13 +9,19 @@ import Foundation
 
 class NotificationsManager: ObservableObject {
     @Published var notifications: [NotificationItem] = []
-    
+    @Published var newItem: NotificationItem?
     
     // Calls loadNotifications to initialise files
     init() {
         loadNotifications()
     }
     
+    // Create a new instance of a notification
+    func createNotification() -> NotificationItem {
+        let newItem = NotificationItem(id: UUID(), isOn: true, time: Date(), taskName: "Task Name", description: "Task Description", repeatSchedule: [.everyDay])
+        notifications.append(newItem)
+        return newItem
+    }
     
     // Loads all the JSON files
     private func loadNotifications() {
