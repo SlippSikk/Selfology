@@ -35,29 +35,38 @@ struct NotificationRow: View {
                         }
                         
                         Spacer(minLength: 25)
-                        
-                        // Time capsule
-                        Text(formatDate(item.time))
-                            .font(.subheadline)
-                            .frame(width: 80, height: 31)
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(customGray, lineWidth: 1)
-                            )
-                        
-                        Spacer(minLength: 25)
-                        
-                        // Task name capsule
-                        Text(item.taskName)
-                            .frame(width: 160, height: 31)
-                            .font(.subheadline)
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(customGray, lineWidth: 1)
-                            )
-                        
-                        // Invisible spacer to balance the leading padding
-                            Spacer().frame(width: 7).hidden()
+                        ZStack {
+                            HStack {
+                                // Time capsule
+                                Text(formatDate(item.time))
+                                    .font(.subheadline)
+                                    .frame(width: 80, height: 31)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 18)
+                                            .stroke(customGray, lineWidth: 1)
+                                    )
+                                
+                                Spacer(minLength: 25)
+                                
+                                // Task name capsule
+                                Text(item.taskName)
+                                    .frame(width: 160, height: 31)
+                                    .font(.subheadline)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 18)
+                                            .stroke(customGray, lineWidth: 1)
+                                    )
+                                
+                                // Invisible spacer to balance the leading padding
+                                Spacer().frame(width: 7).hidden()
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                showDescription.toggle()
+                            }
+                        }
                     }
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
@@ -81,12 +90,7 @@ struct NotificationRow: View {
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation(.easeInOut) {
-                    showDescription.toggle()
-                }
-            }
+
         }
         .background(Color.gray.opacity(0.11))
         .cornerRadius(18)
@@ -103,10 +107,8 @@ struct NotificationRow: View {
 
 #Preview {
 
-
     NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: [.everyMonday])))
         .environmentObject(NotificationsManager())
-
 
     
 }
