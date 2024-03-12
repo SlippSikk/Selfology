@@ -5,7 +5,7 @@
         "time": "2024-03-01T07:00:00Z",
         "taskName": "Morning Routine",
         "description": "Start the day with meditation and exercise.",
-        "repeatSchedule": "EVERY DAY"
+        "repeatSchedule": ["EVERY DAY"]
     },
     {
         "id": "fb4cf78d-4fb4-4c8d-b040-9db12cb3d8c0",
@@ -13,23 +13,23 @@
         "time": "2024-03-01T12:00:00Z",
         "taskName": "Lunch Break",
         "description": "Take a break and enjoy a healthy lunch.",
-        "repeatSchedule": "EVERY DAY"
+        "repeatSchedule": ["EVERY DAY"]
     },
     {
         "id": "b1f889bf-a6a8-451b-bcbf-14f8f1a3ac64",
         "isOn": true,
         "time": "2024-03-01T18:00:00Z",
         "taskName": "Evening Walk",
-        "description": "Go for a 30-minute walk in the neighborhood. This exercise will greatly increase cardiovasuclar endurance. Be sure to eat enough carbs throughout the day to power you through. DO NOT FORGET water bottle as hydration is KEY!!!",
-        "repeatSchedule": "EVERY DAY"
+        "description": "Go for a 30-minute walk in the neighborhood.",
+        "repeatSchedule": ["EVERY DAY"]
     },
     {
         "id": "950b3312-3729-414b-a1bf-d40f96609b2e",
         "isOn": true,
         "time": "2024-03-01T21:00:00Z",
         "taskName": "Reading Time",
-        "description": "Read for an hour before bed. Write a one page summary on what you read and reflect. Use pen and paper",
-        "repeatSchedule": "EVERY DAY"
+        "description": "Read for an hour before bed.",
+        "repeatSchedule": ["EVERY DAY"]
     }
 ]
 
