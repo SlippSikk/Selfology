@@ -13,7 +13,7 @@ struct NotificationItem: Hashable, Identifiable, Codable {
     var time: Date
     var taskName: String
     var description: String
-    var repeatSchedule: RepeatSchedule
+    var repeatSchedule: [RepeatSchedule]
 }
 
 enum RepeatSchedule: String, Codable, CaseIterable {

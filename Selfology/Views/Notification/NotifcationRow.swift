@@ -104,7 +104,7 @@ struct NotificationRow: View {
 #Preview {
 
 
-    NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: .everyMonday)))
+    NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: [.everyMonday])))
         .environmentObject(NotificationsManager())
 
 

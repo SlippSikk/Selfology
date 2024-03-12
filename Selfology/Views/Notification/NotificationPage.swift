@@ -35,6 +35,7 @@ struct NotificationPage: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
