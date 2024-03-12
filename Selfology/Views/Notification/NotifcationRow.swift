@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct NotificationRow: View {
     @State var item: NotificationItem
     @State private var showDescription = false
@@ -25,14 +26,29 @@ struct NotificationRow: View {
                 VStack {
                     HStack {
                         Spacer().frame(width: 7).hidden()
-                        Toggle(isOn: $item.isOn) {
-                            EmptyView()
+                        if #available(iOS 17.0, *) {
+                            Toggle(isOn: $item.isOn) {
+                                EmptyView()
+                            }
+                            .labelsHidden()
+                            .toggleStyle(SwitchToggleStyle(tint: customGray))
+                            // Use .onChange for iOS 17 and above
+                            .onChange(of: item.isOn, initial: false, { oldValue ,newValue  in
+                                notificationsManager.toggleNotification(isOn: newValue, for: item.id)
+                                
+                            })
+                        } else {
+                            Toggle(isOn: $item.isOn) {
+                                EmptyView()
+                            }
+                            .labelsHidden()
+                            .toggleStyle(SwitchToggleStyle(tint: customGray))
+                            // Use .onChange for iOS 16 and below
+                            .onChange(of: item.isOn) { newValue in
+                                notificationsManager.toggleNotification(isOn: newValue, for: item.id)
+                            }
                         }
-                        .labelsHidden()
-                        .toggleStyle(SwitchToggleStyle(tint: customGray))
-                        .onChange(of: item.isOn) { newValue in
-                            notificationsManager.toggleNotification(isOn: newValue, for: item.id)
-                        }
+                        
                         
                         Spacer(minLength: 25)
                         ZStack {

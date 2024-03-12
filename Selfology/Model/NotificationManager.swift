@@ -42,6 +42,7 @@ class NotificationsManager: ObservableObject {
     
     // New or modified saveNotification function. Calls saveNotificationsToFile to do so.
     func saveNotification(_ item: NotificationItem) {
+        //print("Saving notifications item \(item)")
         if let index = notifications.firstIndex(where: { $0.id == item.id }) {
             // Notification exists, update it
             notifications[index] = item
@@ -49,7 +50,7 @@ class NotificationsManager: ObservableObject {
             // New notification, add it
             notifications.append(item)
         }
-        
+        //print("Here are the notifications: \(notifications)")
         // Save the updated notifications array to file
         saveNotificationsToFile()
     }
@@ -61,6 +62,7 @@ class NotificationsManager: ObservableObject {
             let data = try JSONEncoder().encode(notifications)
             let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("notificationItems.json")
             try data.write(to: fileURL, options: .atomic)
+            //print("Saving notifications to \(fileURL.path)")
         } catch {
             print("Error saving notifications: \(error)")
         }
