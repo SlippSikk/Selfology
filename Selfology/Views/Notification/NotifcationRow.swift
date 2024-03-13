@@ -94,7 +94,7 @@ struct NotificationRow: View {
 //                            .transition(.opacity)
 //                            .transition(.move(edge: .top).combined(with: .opacity))
                             
-                        NavigationLink(destination: ReminderView(item: item)) {
+                        NavigationLink(destination: CreateNotification(item: item)) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)

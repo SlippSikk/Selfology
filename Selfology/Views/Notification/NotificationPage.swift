@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotificationPage: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
-    @State private var isPresentingReminderView = false
+    @State private var isPresentingCreateNotification = false
     @State private var newItem: NotificationItem?
     @State private var isAddingNewNotification = false
     
@@ -53,7 +53,7 @@ struct NotificationPage: View {
                 }
                 .navigationDestination(isPresented: $isAddingNewNotification) {
                     if let newItem = notificationsManager.newItem {
-                        ReminderView(item: newItem)
+                        CreateNotification(item: newItem)
                     }
                 }
             }
