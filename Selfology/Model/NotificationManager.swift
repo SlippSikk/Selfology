@@ -24,7 +24,7 @@ class NotificationsManager: ObservableObject {
     }
     
     // Loads all the JSON files
-    private func loadNotifications() {
+    func loadNotifications() {
         guard let file = Bundle.main.url(forResource: "notificationItems.json", withExtension: nil) else {
             fatalError("Couldn't find notificationsItems.json in main bundle.")
         }
@@ -42,7 +42,7 @@ class NotificationsManager: ObservableObject {
     
     // New or modified saveNotification function. Calls saveNotificationsToFile to do so.
     func saveNotification(_ item: NotificationItem) {
-        //print("Saving notifications item \(item)")
+        print("Saving notifications item \(item)")
         if let index = notifications.firstIndex(where: { $0.id == item.id }) {
             // Notification exists, update it
             notifications[index] = item
@@ -62,7 +62,7 @@ class NotificationsManager: ObservableObject {
             let data = try JSONEncoder().encode(notifications)
             let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("notificationItems.json")
             try data.write(to: fileURL, options: .atomic)
-            //print("Saving notifications to \(fileURL.path)")
+            print("Saving notifications to \(fileURL.path)")
         } catch {
             print("Error saving notifications: \(error)")
         }

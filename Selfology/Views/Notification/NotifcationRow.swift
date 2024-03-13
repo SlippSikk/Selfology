@@ -12,6 +12,8 @@ struct NotificationRow: View {
     @State var item: NotificationItem
     @State private var showDescription = false
     @EnvironmentObject var notificationsManager: NotificationsManager
+    @State private var isActive = false
+
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
@@ -87,20 +89,26 @@ struct NotificationRow: View {
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
                     if showDescription {
-                        Text(item.description)
-                            .font(.subheadline)
+                        DynamicHeightTextEditor(text: $item.description)
                             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .transition(.opacity)
-//                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .scrollContentBackground(.hidden)
                             
-                        NavigationLink(destination: CreateNotification(item: item)) {
+                        Button(action: {
+                            showDescription.toggle() // Toggle the description
+                            isActive = true // Trigger the navigation
+                        }) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
-                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
+                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10))
                         .frame(maxWidth: .infinity, alignment: .trailing)
+                        
+                        // This NavigationLink is hidden and only serves to trigger the navigation when isActive becomes true
+                        NavigationLink(destination: CreateNotification(item: item), isActive: $isActive) {
+                            EmptyView()
+                        }
+                        .hidden()
 
                     }
                 }

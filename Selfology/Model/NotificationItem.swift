@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 struct NotificationItem: Hashable, Identifiable, Codable {
     var id: UUID = UUID()
     var isOn: Bool
