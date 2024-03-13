@@ -20,6 +20,9 @@
 		96F625212B96C51100D6A018 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F625202B96C51100D6A018 /* NotificationManager.swift */; };
 		96F625232B96CD4100D6A018 /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F625222B96CD4100D6A018 /* NotificationList.swift */; };
 		9E3DB4F72B95E12C00E527CD /* notificationItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E3DB4F62B95E12C00E527CD /* notificationItems.json */; };
+		9EC99C222BA176E900A357FD /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC99C212BA176E900A357FD /* SplashScreenView.swift */; };
+		9EC99C242BA1821F00A357FD /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC99C232BA1821E00A357FD /* ContainerView.swift */; };
+		9EC99C262BA1B02E00A357FD /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC99C252BA1B02E00A357FD /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		96F625202B96C51100D6A018 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		96F625222B96CD4100D6A018 /* NotificationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationList.swift; sourceTree = "<group>"; };
 		9E3DB4F62B95E12C00E527CD /* notificationItems.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = notificationItems.json; sourceTree = "<group>"; };
+		9EC99C212BA176E900A357FD /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		9EC99C232BA1821E00A357FD /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		9EC99C252BA1B02E00A357FD /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +96,10 @@
 		960B55EF2B4FCC77001A89D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9EC99C232BA1821E00A357FD /* ContainerView.swift */,
+				9EC99C212BA176E900A357FD /* SplashScreenView.swift */,
 				960B55E32B4FB43C001A89D8 /* ContentView.swift */,
+				9EC99C252BA1B02E00A357FD /* AppViewModel.swift */,
 				960B56012B50C87C001A89D8 /* Notification */,
 				960B55FD2B50093E001A89D8 /* PlusButton.swift */,
 			);
@@ -199,13 +208,16 @@
 			files = (
 				960B55F12B4FCCB7001A89D8 /* NotificationPage.swift in Sources */,
 				960B55E42B4FB43C001A89D8 /* ContentView.swift in Sources */,
+				9EC99C262BA1B02E00A357FD /* AppViewModel.swift in Sources */,
 				960B56002B500F39001A89D8 /* NotificationItem.swift in Sources */,
 				960B55E22B4FB43C001A89D8 /* SelfologyApp.swift in Sources */,
 				96F625232B96CD4100D6A018 /* NotificationList.swift in Sources */,
 				960B55FE2B50093E001A89D8 /* PlusButton.swift in Sources */,
 				96591DFB2BA1624B00D858E8 /* DynamicHeightTextEditor.swift in Sources */,
 				960B55F52B4FCCFE001A89D8 /* CreateNotification.swift in Sources */,
+				9EC99C222BA176E900A357FD /* SplashScreenView.swift in Sources */,
 				96F625212B96C51100D6A018 /* NotificationManager.swift in Sources */,
+				9EC99C242BA1821F00A357FD /* ContainerView.swift in Sources */,
 				960B55FC2B4FCDFC001A89D8 /* NotifcationRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
