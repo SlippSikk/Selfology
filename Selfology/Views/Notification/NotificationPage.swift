@@ -14,6 +14,7 @@ struct NotificationPage: View {
     @State private var isAddingNewNotification = false
     
     var body: some View {
+
         NavigationStack {
             ZStack {
                 Color(#colorLiteral(red: 0.89, green: 0.88, blue: 0.87, alpha: 1)) // Hex #e4e2dd
@@ -40,8 +41,12 @@ struct NotificationPage: View {
                     .padding(.bottom, 35)
                     
                     ScrollView {
+                        
                         NotificationList()
                     
+                    }            
+                    .onAppear {
+                        notificationsManager.loadNotifications() // Call to refresh notifications
                     }
                     Spacer()
                     Image("blacklogo")
@@ -57,6 +62,7 @@ struct NotificationPage: View {
                     }
                 }
             }
+
         }
         .navigationBarBackButtonHidden(true)
     }
