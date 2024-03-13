@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct SelfologyApp: App {
-    var notificationsManager = NotificationsManager()
+    //var notificationsManager = NotificationsManager()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(notificationsManager)
+            ContainerView()
+            
+//            SplashScreenView()
+//            ContentView()
+//                .environmentObject(notificationsManager)
         }
     }
 }
