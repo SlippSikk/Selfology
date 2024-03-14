@@ -12,6 +12,7 @@ struct NotificationRow: View {
     @State var item: NotificationItem
     @State private var showDescription = false
     @EnvironmentObject var notificationsManager: NotificationsManager
+    @State private var shouldNavigateToCreateNotification = false
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
@@ -94,14 +95,20 @@ struct NotificationRow: View {
 //                            .transition(.opacity)
 //                            .transition(.move(edge: .top).combined(with: .opacity))
                             
-                        NavigationLink(destination: CreateNotification(item: item)) {
+                        // In NotificationRow, adjust to trigger selection change on button tap:
+                        Button(action: {
+                            shouldNavigateToCreateNotification = true
+                        }) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
+                        .navigationDestination(isPresented: $shouldNavigateToCreateNotification) {
+                            CreateNotification(item: item) // Destination
+                        }
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
-
+                        
                     }
                 }
             }
