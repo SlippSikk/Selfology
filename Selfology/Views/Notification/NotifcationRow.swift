@@ -88,16 +88,15 @@ struct NotificationRow: View {
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
                     if showDescription {
-                        Text(item.description)
-                            .font(.subheadline)
+                        DynamicHeightTextEditor(text: $item.description)
                             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-//                            .transition(.opacity)
-//                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .scrollContentBackground(.hidden)
                             
                         // In NotificationRow, adjust to trigger selection change on button tap:
                         Button(action: {
+                            showDescription.toggle() // Toggle the description
                             shouldNavigateToCreateNotification = true
+
                         }) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
@@ -108,7 +107,6 @@ struct NotificationRow: View {
                         }
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                        
                     }
                 }
             }
