@@ -12,8 +12,7 @@ struct NotificationRow: View {
     @State var item: NotificationItem
     @State private var showDescription = false
     @EnvironmentObject var notificationsManager: NotificationsManager
-    @State private var isActive = false
-
+    @State private var shouldNavigateToCreateNotification = false
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
@@ -93,23 +92,21 @@ struct NotificationRow: View {
                             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                             .scrollContentBackground(.hidden)
                             
+                        // In NotificationRow, adjust to trigger selection change on button tap:
                         Button(action: {
                             showDescription.toggle() // Toggle the description
-                            isActive = true // Trigger the navigation
+                            shouldNavigateToCreateNotification = true
+
                         }) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
-                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10))
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-                        // This NavigationLink is hidden and only serves to trigger the navigation when isActive becomes true
-                        NavigationLink(destination: CreateNotification(item: item), isActive: $isActive) {
-                            EmptyView()
+                        .navigationDestination(isPresented: $shouldNavigateToCreateNotification) {
+                            CreateNotification(item: item) // Destination
                         }
-                        .hidden()
-
+                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
             }

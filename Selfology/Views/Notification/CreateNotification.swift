@@ -76,7 +76,6 @@ struct CreateNotification: View {
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .foregroundColor(.red)
                         }
-                        // This NavigationLink is hidden and only serves to trigger the navigation when shouldNavigate becomes true
                         .navigationDestination(isPresented: $shouldNavigateToNotificationPage) {
                             NotificationPage() // Destination
                         }
@@ -118,7 +117,7 @@ struct CreateNotification: View {
                 .background(Color.black)
             }
         }
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
     }
 }
 
