@@ -19,6 +19,7 @@
 		96591DFB2BA1624B00D858E8 /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96591DFA2BA1624B00D858E8 /* DynamicHeightTextEditor.swift */; };
 		96F625212B96C51100D6A018 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F625202B96C51100D6A018 /* NotificationManager.swift */; };
 		96F625232B96CD4100D6A018 /* NotificationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F625222B96CD4100D6A018 /* NotificationList.swift */; };
+		9E3241712BA4016600B659DE /* TestFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3241702BA4016600B659DE /* TestFile.swift */; };
 		9E3DB4F72B95E12C00E527CD /* notificationItems.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E3DB4F62B95E12C00E527CD /* notificationItems.json */; };
 		9EC99C222BA176E900A357FD /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC99C212BA176E900A357FD /* SplashScreenView.swift */; };
 		9EC99C242BA1821F00A357FD /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC99C232BA1821E00A357FD /* ContainerView.swift */; };
@@ -39,6 +40,7 @@
 		96591DFA2BA1624B00D858E8 /* DynamicHeightTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextEditor.swift; sourceTree = "<group>"; };
 		96F625202B96C51100D6A018 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		96F625222B96CD4100D6A018 /* NotificationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationList.swift; sourceTree = "<group>"; };
+		9E3241702BA4016600B659DE /* TestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFile.swift; sourceTree = "<group>"; };
 		9E3DB4F62B95E12C00E527CD /* notificationItems.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = notificationItems.json; sourceTree = "<group>"; };
 		9EC99C212BA176E900A357FD /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		9EC99C232BA1821E00A357FD /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				96591DFA2BA1624B00D858E8 /* DynamicHeightTextEditor.swift */,
 				960B55F02B4FCCB7001A89D8 /* NotificationPage.swift */,
 				960B55F42B4FCCFE001A89D8 /* CreateNotification.swift */,
+				9E3241702BA4016600B659DE /* TestFile.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				960B55F12B4FCCB7001A89D8 /* NotificationPage.swift in Sources */,
 				960B55E42B4FB43C001A89D8 /* ContentView.swift in Sources */,
 				9EC99C262BA1B02E00A357FD /* AppViewModel.swift in Sources */,
+				9E3241712BA4016600B659DE /* TestFile.swift in Sources */,
 				960B56002B500F39001A89D8 /* NotificationItem.swift in Sources */,
 				960B55E22B4FB43C001A89D8 /* SelfologyApp.swift in Sources */,
 				96F625232B96CD4100D6A018 /* NotificationList.swift in Sources */,

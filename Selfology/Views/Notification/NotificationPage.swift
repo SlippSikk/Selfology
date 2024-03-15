@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NotificationPage: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
-    @State private var isPresentingCreateNotification = false
-    @State private var newItem: NotificationItem?
     @State private var isAddingNewNotification = false
     
     var body: some View {
@@ -25,14 +23,6 @@ struct NotificationPage: View {
                         Spacer()
                         Button(action: {
                             // Create a new notification and prepare to navigate
-                            notificationsManager.newItem = NotificationItem(
-                                id: UUID(),
-                                isOn: true,
-                                time: Date(),
-                                taskName: "Task Name",
-                                description: "Task Description",
-                                repeatSchedule: [.everyDay]
-                            )
                             isAddingNewNotification = true
                         }) {
                             PlusButton()
@@ -45,9 +35,9 @@ struct NotificationPage: View {
                         NotificationList()
                     
                     }            
-                    .onAppear {
-                        notificationsManager.loadNotifications() // Call to refresh notifications
-                    }
+//                    .onAppear {
+//                        notificationsManager.loadNotifications() // Call to refresh notifications
+//                    }
                     Spacer()
                     Image("blacklogo")
                         .resizable()
@@ -57,9 +47,15 @@ struct NotificationPage: View {
                         .padding(.top, 39)
                 }
                 .navigationDestination(isPresented: $isAddingNewNotification) {
-                    if let newItem = notificationsManager.newItem {
-                        CreateNotification(item: newItem)
-                    }
+                    CreateNotification(item: .constant(NotificationItem(
+                        id: UUID(),
+                        isOn: true,
+                        time: Date(),
+                        taskName: "Task Name",
+                        description: "Task Description",
+                        repeatSchedule: [.everyDay]
+                    )))
+                    .environmentObject(notificationsManager)
                 }
             }
 

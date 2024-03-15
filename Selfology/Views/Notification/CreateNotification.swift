@@ -11,7 +11,7 @@ struct CreateNotification: View {
     @State private var selectedDate = Date()
     @State private var taskName = "TASK NAME"
     @State private var repeatFrequency = RepeatSchedule.everyDay
-    @State var item: NotificationItem
+    @Binding var item: NotificationItem
     @EnvironmentObject var notificationsManager: NotificationsManager
     @Environment(\.presentationMode) var presentationMode
     @State private var shouldNavigateToNotificationPage = false
@@ -234,16 +234,14 @@ struct RepeatScheduleSelector: View {
 
 struct CreateNotification_Previews: PreviewProvider {
     static var previews: some View {
-        // Assuming NotificationsManager is correctly handling the updated NotificationItem structure
         let notificationsManager = NotificationsManager()
 
         Group {
-            // Updated to pass an array of RepeatSchedule values to match the updated NotificationItem structure
-            CreateNotification(item: NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday]))
-            .environmentObject(notificationsManager) // Provide the notificationsManager as an EnvironmentObject
-            
-            CreateNotification(item: NotificationItem(isOn: true, time: Date(), taskName: "Exercise", description: "Morning exercise session to energize the body for the day ahead.", repeatSchedule: [.everyTuesday]))
-            .environmentObject(notificationsManager) // Provide the notificationsManager as an EnvironmentObject
+            CreateNotification(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])))
+                .environmentObject(notificationsManager)
+
+            CreateNotification(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Exercise", description: "Morning exercise session to energize the body for the day ahead.", repeatSchedule: [.everyTuesday])))
+                .environmentObject(notificationsManager)
         }
     }
 }
