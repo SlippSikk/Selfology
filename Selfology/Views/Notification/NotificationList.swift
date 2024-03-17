@@ -11,13 +11,11 @@ struct NotificationList: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
     var body: some View {
         
-//        NavigationStack {
         ForEach(Array(notificationsManager.notifications.indices), id: \.self) { index in
-            NotificationRow(item: $notificationsManager.notifications[index])
+            NotificationRow(item: notificationsManager.notifications[index])
                 .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
         }
-//            }
-        }
+    }
     
 }
 

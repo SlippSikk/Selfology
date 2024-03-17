@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct NotificationRow: View {
-    @Binding var item: NotificationItem
+    @State var item: NotificationItem
     @State private var showDescription = false
     @EnvironmentObject var notificationsManager: NotificationsManager
     @State private var shouldNavigateToCreateNotification = false
@@ -105,7 +105,8 @@ struct NotificationRow: View {
                         .navigationDestination(isPresented: $shouldNavigateToCreateNotification) {
 //                            TestFile()
                             CreateNotification(item: $item) // Destination
-//                                .environmentObject(notificationsManager)
+                                .environmentObject(notificationsManager)
+
                         }
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -130,7 +131,7 @@ struct NotificationRow: View {
 
 struct NotificationRow_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationRow(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])))
+        NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])))
             .environmentObject(NotificationsManager())
     }
 }

@@ -35,9 +35,7 @@ struct NotificationPage: View {
                         NotificationList()
                     
                     }            
-//                    .onAppear {
-//                        notificationsManager.loadNotifications() // Call to refresh notifications
-//                    }
+
                     Spacer()
                     Image("blacklogo")
                         .resizable()
@@ -46,21 +44,10 @@ struct NotificationPage: View {
                         .padding(.bottom, 20)
                         .padding(.top, 39)
                 }
-                .navigationDestination(isPresented: $isAddingNewNotification) {
-                    CreateNotification(item: .constant(NotificationItem(
-                        id: UUID(),
-                        isOn: true,
-                        time: Date(),
-                        taskName: "Task Name",
-                        description: "Task Description",
-                        repeatSchedule: [.everyDay]
-                    )))
-                    .environmentObject(notificationsManager)
-                }
+                
             }
 
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 
