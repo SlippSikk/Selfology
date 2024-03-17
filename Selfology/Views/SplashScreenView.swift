@@ -17,17 +17,17 @@ struct SplashScreenView: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                Image("blacklogo") // Your logo here
+                Image("blacklogo") // logo
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 110, height: 110)
+                    .frame(width: 90, height: 90)
                     .rotationEffect(Angle(degrees: angle))
                     .onAppear {
                         // Use easeOut to slow down the animation over time
-                        withAnimation(Animation.easeOut(duration: 1.5)) {
+                        withAnimation(Animation.easeOut(duration: 2)) {
                             self.angle = 270
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                             withAnimation {
                                 self.viewModel.showSplashScreen = false
                             }

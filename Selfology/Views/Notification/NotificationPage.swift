@@ -58,7 +58,6 @@ struct NotificationPage: View {
                     .environmentObject(notificationsManager)
                 }
             }
-
         }
         .navigationBarBackButtonHidden(true)
     }
