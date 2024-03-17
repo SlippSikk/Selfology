@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContainerView: View {
     @StateObject private var viewModel = AppViewModel() // Initialize the ViewModel
-    var notificationsManager = NotificationsManager()
-    
+    @StateObject private var notificationsManager = NotificationsManager()
+
     var body: some View {
         Group {
             if viewModel.showSplashScreen {
