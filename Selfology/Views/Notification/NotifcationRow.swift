@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct NotificationRow: View {
-    @State var item: NotificationItem
+    @Binding var item: NotificationItem
     @State private var showDescription = false
     @EnvironmentObject var notificationsManager: NotificationsManager
     @State private var shouldNavigateToCreateNotification = false
@@ -93,18 +93,13 @@ struct NotificationRow: View {
                             .scrollContentBackground(.hidden)
                             
                         // In NotificationRow, adjust to trigger selection change on button tap:
-                        Button(action: {
-                            showDescription.toggle() // Toggle the description
-                            shouldNavigateToCreateNotification = true
-
-                        }) {
+                        NavigationLink(destination: CreateNotification(item: $item)) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
-                        .navigationDestination(isPresented: $shouldNavigateToCreateNotification) {
-                            CreateNotification(item: item) // Destination
-                        }
+                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     }
@@ -126,10 +121,9 @@ struct NotificationRow: View {
     }
 }
 
-#Preview {
-
-    NotificationRow(item: (NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth lving. And we must be thankful to God for blessing us and our families. ", repeatSchedule: [.everyMonday])))
-        .environmentObject(NotificationsManager())
-
-    
+struct NotificationRow_Previews: PreviewProvider {
+    static var previews: some View {
+        NotificationRow(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])))
+            .environmentObject(NotificationsManager())
+    }
 }
