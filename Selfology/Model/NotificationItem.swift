@@ -26,7 +26,19 @@ enum RepeatSchedule: String, Codable, CaseIterable {
     case everyFriday = "EVERY FRIDAY"
     case everySaturday = "EVERY SATURDAY"
     case everySunday = "EVERY SUNDAY"
+    
+    func abbreviation() -> String {
+        switch self {
+        case .everySunday: return "S"
+        case .everyMonday: return "M"
+        case .everyTuesday: return "T"
+        case .everyWednesday: return "W"
+        case .everyThursday: return "T"
+        case .everyFriday: return "F"
+        case .everySaturday: return "S"
+        case .everyDay: return "Everyday" // Or handle differently since it's not a single day
+        }
+    }
 }
-
 
 
