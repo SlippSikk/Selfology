@@ -10,15 +10,15 @@ import SwiftUI
 struct NotificationList: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
     var body: some View {
-        let noti = notificationsManager.notifications
         
 //        NavigationStack {
-            ForEach(noti) { item in
-                NotificationRow(item: item)
-                    .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
+        ForEach(Array(notificationsManager.notifications.indices), id: \.self) { index in
+            NotificationRow(item: $notificationsManager.notifications[index])
+                .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
+        }
 //            }
         }
-    }
+    
 }
 
 #Preview {
