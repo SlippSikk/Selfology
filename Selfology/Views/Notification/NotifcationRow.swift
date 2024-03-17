@@ -93,20 +93,13 @@ struct NotificationRow: View {
                             .scrollContentBackground(.hidden)
                             
                         // In NotificationRow, adjust to trigger selection change on button tap:
-                        Button(action: {
-//                            showDescription.toggle() // Toggle the description
-                            shouldNavigateToCreateNotification = true
-
-                        }) {
+                        NavigationLink(destination: CreateNotification(item: $item)) {
                             Image(systemName: "ellipsis")
                                 .font(.title)
                                 .foregroundColor(.primary)
                         }
-                        .navigationDestination(isPresented: $shouldNavigateToCreateNotification) {
-//                            TestFile()
-                            CreateNotification(item: $item) // Destination
-//                                .environmentObject(notificationsManager)
-                        }
+                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     }

@@ -8,14 +8,35 @@
 import SwiftUI
 
 struct CreateNotification: View {
-    @State private var selectedDate = Date()
-    @State private var taskName = "TASK NAME"
-    @State private var repeatFrequency = RepeatSchedule.everyDay
+    // NotificationItem passed down
     @Binding var item: NotificationItem
+    
+    // NotificationsManager
     @EnvironmentObject var notificationsManager: NotificationsManager
+    
+    // Presentation Mode
     @Environment(\.presentationMode) var presentationMode
+    
+    // Navigation variables
     @State private var shouldNavigateToNotificationPage = false
     @State private var showingRepeatScheduleSheet = false
+    
+    // Local copies of the item's properties
+    @State private var localTime: Date
+    @State private var localTaskName: String
+    @State private var localDescription: String
+    @State private var localRepeatSchedule: [RepeatSchedule]
+    @State private var localIsOn: Bool
+
+    init(item: Binding<NotificationItem>) {
+        self._item = item
+        // Initialize the local state variables
+        _localTime = State(initialValue: item.wrappedValue.time)
+        _localTaskName = State(initialValue: item.wrappedValue.taskName)
+        _localDescription = State(initialValue: item.wrappedValue.description)
+        _localRepeatSchedule = State(initialValue: item.wrappedValue.repeatSchedule)
+        _localIsOn = State(initialValue: item.wrappedValue.isOn)
+    }
 
     
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
@@ -26,7 +47,7 @@ struct CreateNotification: View {
                 Form {
                     
                     Section {
-                        DatePicker("Time", selection: $item.time, displayedComponents: .hourAndMinute)
+                        DatePicker("Time", selection: $localTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(WheelDatePickerStyle())
                             .labelsHidden()
                     }
@@ -38,7 +59,7 @@ struct CreateNotification: View {
                             
                                 .foregroundColor(.black)
                             Spacer()
-                            TextField("TASK NAME", text: $item.taskName)
+                            TextField("TASK NAME", text: $localTaskName)
                                 .multilineTextAlignment(.trailing)
                                 .foregroundColor(.gray)
                             
@@ -51,13 +72,13 @@ struct CreateNotification: View {
                                 HStack {
                                     Text("Repeat Schedule")
                                     Spacer()
-                                    Text(item.repeatSchedule.map { $0.rawValue }.joined(separator: ", "))
+                                    Text(localRepeatSchedule.map { $0.rawValue }.joined(separator: ", "))
                                         .foregroundColor(.gray)
                                 }
                             }
                             .sheet(isPresented: $showingRepeatScheduleSheet) {
                                 // Now use a view that contains the list for selecting repeat schedules
-                                RepeatScheduleSelector(repeatSchedules: $item.repeatSchedule)
+                                RepeatScheduleSelector(repeatSchedules: $localRepeatSchedule)
                             }
                         .listRowBackground(Color.gray.opacity(0.11))
                     }
@@ -70,6 +91,7 @@ struct CreateNotification: View {
                             // Action to delete notification
                             notificationsManager.deleteNotification(for: item.id)
                             // After deletion, trigger navigation
+                            
                             shouldNavigateToNotificationPage = true
                         }) {
                             Text("DELETE NOTIFICATION")
@@ -100,12 +122,12 @@ struct CreateNotification: View {
                 {
                     // Save logic vvv
                     // Create or update the notification item with the current form values
-                    let updatedItem = NotificationItem(id: item.id, // Keep the original ID to update the existing notification
-                                                        isOn: item.isOn, // Keep the original isOn status or modify as needed
-                                                       time: item.time,
-                                                       taskName: item.taskName,
-                                                        description: item.description, // Assuming description remains unchanged or provide a way to update it
-                                                       repeatSchedule: item.repeatSchedule)
+                    let updatedItem = NotificationItem(id: item.id,
+                                                       isOn: item.isOn,
+                                                       time: localTime,
+                                                       taskName: localTaskName,
+                                                       description: item.description,
+                                                       repeatSchedule: localRepeatSchedule)
 
                     // Call saveNotification to save the changes
                     notificationsManager.saveNotification(updatedItem)
@@ -117,7 +139,7 @@ struct CreateNotification: View {
                 .background(Color.black)
             }
         }
-        //.navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
