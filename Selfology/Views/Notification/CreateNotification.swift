@@ -139,7 +139,7 @@ struct CreateNotification: View {
                 .background(Color.black)
             }
         }
-        //.navigationBarBackButtonHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

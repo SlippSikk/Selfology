@@ -24,10 +24,10 @@ struct SplashScreenView: View {
                     .rotationEffect(Angle(degrees: angle))
                     .onAppear {
                         // Use easeOut to slow down the animation over time
-                        withAnimation(Animation.easeOut(duration: 2)) {
+                        withAnimation(Animation.easeOut(duration: 1.5)) {
                             self.angle = 270
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                             withAnimation {
                                 self.viewModel.showSplashScreen = false
                             }
