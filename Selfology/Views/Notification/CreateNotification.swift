@@ -78,7 +78,7 @@ struct CreateNotification: View {
                             }
                             .sheet(isPresented: $showingRepeatScheduleSheet) {
                                 // Now use a view that contains the list for selecting repeat schedules
-                                RepeatScheduleSelector(repeatSchedules: $item.repeatSchedule)
+                                RepeatScheduleSelector(repeatSchedules: $localRepeatSchedule)
                             }
                         .listRowBackground(Color.gray.opacity(0.11))
                     }
