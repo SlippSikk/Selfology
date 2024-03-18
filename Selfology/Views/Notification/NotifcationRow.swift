@@ -103,6 +103,9 @@ struct NotificationRow: View {
                         DynamicHeightTextEditor(text: $item.description)
                             .padding(EdgeInsets(top: -8, leading: 10, bottom: 5, trailing: 10))
                             .scrollContentBackground(.hidden)
+                            .onChange(of: item.description) { _ in
+                                notificationsManager.saveNotification(item)
+                            }
                             
                         // In NotificationRow, adjust to trigger selection change on button tap:
                         NavigationLink(destination: CreateNotification(item: $item)) {

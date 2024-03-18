@@ -25,17 +25,42 @@ class NotificationsManager: ObservableObject {
     
     // Loads all the JSON files
     func loadNotifications() {
-        guard let file = Bundle.main.url(forResource: "notificationItems.json", withExtension: nil) else {
-            fatalError("Couldn't find notificationsItems.json in main bundle.")
-        }
+//        guard let file = Bundle.main.url(forResource: "notificationItems.json", withExtension: nil) else {
+//            fatalError("Couldn't find notificationsItems.json in main bundle.")
+//        }
+//        
+//        do {
+//            let data = try Data(contentsOf: file)
+//            let decoder = JSONDecoder()
+//            decoder.dateDecodingStrategy = .iso8601
+//            notifications = try decoder.decode([NotificationItem].self, from: data)
+//        } catch {
+//            fatalError("Couldn't load notificationItems.json from main bundle:\n\(error)")
+//        }
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("notificationItems.json")
         
-        do {
-            let data = try Data(contentsOf: file)
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .iso8601
-            notifications = try decoder.decode([NotificationItem].self, from: data)
-        } catch {
-            fatalError("Couldn't load notificationItems.json from main bundle:\n\(error)")
+        // Check if the file exists in the Document directory (persisted data)
+        if FileManager.default.fileExists(atPath: fileURL.path) {
+            // Load the persisted data
+            do {
+                let data = try Data(contentsOf: fileURL)
+                notifications = try JSONDecoder().decode([NotificationItem].self, from: data)
+            } catch {
+                print("Could not load the persisted notifications: \(error)")
+            }
+        } else {
+            // Load the initial data from the bundle as fallback
+            guard let bundleURL = Bundle.main.url(forResource: "notificationItems", withExtension: "json") else {
+                fatalError("Couldn't find notificationItems.json in main bundle.")
+            }
+            do {
+                let data = try Data(contentsOf: bundleURL)
+                notifications = try JSONDecoder().decode([NotificationItem].self, from: data)
+                // Optionally, save the initial data to Document directory for future use
+                saveNotificationsToFile()
+            } catch {
+                fatalError("Couldn't load notificationItems.json from main bundle: \(error)")
+            }
         }
     }
     
