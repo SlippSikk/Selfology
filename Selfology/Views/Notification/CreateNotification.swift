@@ -222,12 +222,12 @@ struct RepeatScheduleSelector: View {
             .background(lightBackground)
             .cornerRadius(10)
             .padding(.top, -250)
+            .navigationBarTitle("Repeat", displayMode: .inline)
+            .navigationBarItems(leading: Button(action: {
 //            .overlay(
 //                RoundedRectangle(cornerRadius: 10)
 //                    .stroke(borderColor, lineWidth: 1)
 //            )
-            .navigationBarTitle("Repeat", displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
             }) {
                 HStack {

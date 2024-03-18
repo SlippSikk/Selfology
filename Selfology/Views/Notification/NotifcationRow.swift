@@ -14,6 +14,7 @@ struct NotificationRow: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
     @State private var shouldNavigateToCreateNotification = false
     
+    private let allDays: [RepeatSchedule] = [.everySunday, .everyMonday, .everyTuesday, .everyWednesday, .everyThursday, .everyFriday, .everySaturday]
     let customGray = Color(red: 43.0 / 255.0, green: 43.0 / 255.0, blue: 43.0 / 255.0)
 
     var body: some View {
@@ -88,9 +89,23 @@ struct NotificationRow: View {
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
                     if showDescription {
+                        HStack(spacing: 10) {
+                            ForEach(allDays, id: \.self) { day in
+                                Text(day.abbreviation())
+                                    .fontWeight(self.item.repeatSchedule.contains(.everyDay) || self.item.repeatSchedule.contains(day) ? .bold : .regular)
+                                    .foregroundColor(self.item.repeatSchedule.contains(.everyDay) || self.item.repeatSchedule.contains(day) ? .black : .gray)
+                            }
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+
+                        
                         DynamicHeightTextEditor(text: $item.description)
-                            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                            .padding(EdgeInsets(top: -8, leading: 10, bottom: 5, trailing: 10))
                             .scrollContentBackground(.hidden)
+                            .onChange(of: item.description) { _ in
+                                notificationsManager.saveNotification(item)
+                            }
                             
                         // In NotificationRow, adjust to trigger selection change on button tap:
                         NavigationLink(destination: CreateNotification(item: $item)) {
@@ -127,3 +142,6 @@ struct NotificationRow_Previews: PreviewProvider {
             .environmentObject(NotificationsManager())
     }
 }
+
+
+
