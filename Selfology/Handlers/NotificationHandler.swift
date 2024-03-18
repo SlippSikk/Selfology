@@ -11,7 +11,7 @@ import UserNotifications
 class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationHandler()
 
-    //private init() {}
+//    private init() {}
     
     override init() {
         super.init()
@@ -34,21 +34,18 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func scheduleNotification(for item: NotificationItem) {
-        guard item.isOn else { return } // Ensure the notification is enabled
+        guard item.isOn else { return }
 
         let content = UNMutableNotificationContent()
         content.title = "SELFOLOGY."
         content.body = "It's time to \(item.taskName)"
         content.sound = UNNotificationSound.default
 
-        // Configure the recurring date.
         for repeatDay in item.repeatSchedule {
             let trigger = createTrigger(for: repeatDay, at: item.time)
+            let identifier = item.id.uuidString // Use NotificationItem's id as identifier
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
 
-            // Create the request
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-            // Add request to the UNUserNotificationCenter
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
                     print("Error scheduling notification: \(error)")
@@ -56,6 +53,12 @@ class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
             }
         }
     }
+    
+    
+    func deleteNotification(for item: NotificationItem) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [item.id.uuidString])
+    }
+
 
     private func createTrigger(for schedule: RepeatSchedule, at time: Date) -> UNCalendarNotificationTrigger {
         var dateComponents = DateComponents()

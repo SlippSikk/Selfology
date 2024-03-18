@@ -68,20 +68,19 @@ class NotificationsManager: ObservableObject {
     // New or modified saveNotification function. Calls saveNotificationsToFile to do so.
     func saveNotification(_ item: NotificationItem) {
         print("Saving notifications item \(item)")
+        
         if let index = notifications.firstIndex(where: { $0.id == item.id }) {
-            // Notification exists, update it
+            // Notification exists, remove the old one before updating
+            NotificationHandler.shared.deleteNotification(for: notifications[index])
             notifications[index] = item
         } else {
             // New notification, add it
             notifications.append(item)
         }
-        //print("Here are the notifications: \(notifications)")
-        // Save the updated notifications array to file
         saveNotificationsToFile()
-        
-        // Schedule or update the local notification
         NotificationHandler.shared.scheduleNotification(for: item)
     }
+
     
     
     // Extracted saving logic to a new function for clarity
@@ -111,11 +110,15 @@ class NotificationsManager: ObservableObject {
     
     // Deletes a notification. Calls saveNotificationsToFile to do so.
     func deleteNotification(for id: UUID) {
-        notifications.removeAll { $0.id == id }
-        saveNotificationsToFile() // Reuse the save logic to persist changes
+        if let index = notifications.firstIndex(where: { $0.id == id }) {
+            NotificationHandler.shared.deleteNotification(for: notifications[index])
+            notifications.remove(at: index)
+            saveNotificationsToFile()
+        }
     }
     
-    
-
-    
+    //    func deleteNotification(for id: UUID) {
+    //        notifications.removeAll { $0.id == id }
+    //        saveNotificationsToFile() // Reuse the save logic to persist changes
+    //    }
 }

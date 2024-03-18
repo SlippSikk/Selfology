@@ -115,8 +115,7 @@ struct NotificationRow: View {
                         }
                         .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10))
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding(EdgeInsets(top: 2, leading: 0, bottom: 10, trailing: 10)) // Adjust padding as needed
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+
                     }
                 }
             }
