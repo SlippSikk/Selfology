@@ -8,11 +8,21 @@
 import Foundation
 import UserNotifications
 
-class NotificationHandler {
+class NotificationHandler: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationHandler()
 
-    private init() {}
+    //private init() {}
+    
+    override init() {
+        super.init()
+        UNUserNotificationCenter.current().delegate = self
+    }
 
+    // Handle notification while app is in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound]) // Customize as needed
+    }
+    
     func askPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
@@ -27,8 +37,8 @@ class NotificationHandler {
         guard item.isOn else { return } // Ensure the notification is enabled
 
         let content = UNMutableNotificationContent()
-        content.title = "SELFOLOGY."                        // item.taskName
-        content.body = "It's time to \(item.taskName)"      // item.description
+        content.title = "SELFOLOGY."
+        content.body = "It's time to \(item.taskName)"
         content.sound = UNNotificationSound.default
 
         // Configure the recurring date.
