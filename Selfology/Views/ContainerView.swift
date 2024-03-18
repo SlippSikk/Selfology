@@ -18,11 +18,13 @@ struct ContainerView: View {
             } else {
                 ContentView()
                     .environmentObject(notificationsManager)
+                    .onAppear {
+                        NotificationHandler.shared.askPermission()
+                    }
             }
         }
     }
 }
-
 
 #Preview {
     ContainerView()

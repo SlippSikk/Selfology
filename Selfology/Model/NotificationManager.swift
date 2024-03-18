@@ -53,6 +53,9 @@ class NotificationsManager: ObservableObject {
         //print("Here are the notifications: \(notifications)")
         // Save the updated notifications array to file
         saveNotificationsToFile()
+        
+        // Schedule or update the local notification
+        NotificationHandler.shared.scheduleNotification(for: item)
     }
     
     
@@ -86,7 +89,8 @@ class NotificationsManager: ObservableObject {
         notifications.removeAll { $0.id == id }
         saveNotificationsToFile() // Reuse the save logic to persist changes
     }
-
+    
+    
 
     
 }
