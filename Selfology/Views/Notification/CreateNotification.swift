@@ -50,6 +50,7 @@ struct CreateNotification: View {
                         DatePicker("Time", selection: $localTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(WheelDatePickerStyle())
                             .labelsHidden()
+                            .foregroundColor(.black)
                     }
                     .listRowBackground(Color.clear)
                     
@@ -140,6 +141,7 @@ struct CreateNotification: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .preferredColorScheme(.light)
     }
 }
 

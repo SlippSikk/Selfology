@@ -126,6 +126,7 @@ struct NotificationRow: View {
         .cornerRadius(18)
         .padding(.horizontal)
 //        .animation(.easeInOut, value: showDescription)
+        .preferredColorScheme(.light)
     }
 
     private func formatDate(_ date: Date) -> String {
