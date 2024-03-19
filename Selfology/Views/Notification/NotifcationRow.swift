@@ -10,7 +10,8 @@ import SwiftUI
 
 struct NotificationRow: View {
     @Binding var item: NotificationItem
-    @State private var showDescription = false
+    @Binding var isExpanded: Bool // New binding to control expanded state
+
     @EnvironmentObject var notificationsManager: NotificationsManager
     @State private var shouldNavigateToCreateNotification = false
     
@@ -21,9 +22,9 @@ struct NotificationRow: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 18)
-                    .fill(Color.gray.opacity(showDescription ? 0.05 : 0.00))
-                    .shadow(radius: showDescription ? 0 : 5)
-                    .animation(.easeInOut, value: showDescription)
+                    .fill(Color.gray.opacity(isExpanded ? 0.05 : 0.00))
+                    .shadow(radius: isExpanded ? 0 : 5)
+                    .animation(.easeInOut, value: isExpanded)
                 
                 VStack {
                     HStack {
@@ -82,13 +83,13 @@ struct NotificationRow: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation(.easeInOut) {
-                                showDescription.toggle()
+                                self.isExpanded.toggle()
                             }
                         }
                     }
                     .padding(EdgeInsets(top: 7, leading: 0, bottom:7, trailing: 0))
 
-                    if showDescription {
+                    if isExpanded {
                         HStack(spacing: 10) {
                             ForEach(allDays, id: \.self) { day in
                                 Text(day.abbreviation())
@@ -138,7 +139,7 @@ struct NotificationRow: View {
 
 struct NotificationRow_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationRow(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])))
+        NotificationRow(item: .constant(NotificationItem(isOn: true, time: Date(), taskName: "Meditate", description: "Wake Up and Meditate to Free The Soul for today is a bright day worth living. And we must be thankful to God for blessing us and our families.", repeatSchedule: [.everyMonday])), isExpanded: .constant(false))
             .environmentObject(NotificationsManager())
     }
 }
