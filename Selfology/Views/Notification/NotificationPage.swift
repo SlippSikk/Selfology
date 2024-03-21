@@ -10,6 +10,8 @@ import SwiftUI
 struct NotificationPage: View {
     @EnvironmentObject var notificationsManager: NotificationsManager
     @State private var isAddingNewNotification = false
+    @State private var expandedItemId: UUID? = nil
+
     
     var body: some View {
 
@@ -31,10 +33,14 @@ struct NotificationPage: View {
                     .padding(.bottom, 35)
                     
                     ScrollView {
-                        
-                        NotificationList()
-                    
-                    }            
+                        ForEach(Array(notificationsManager.notifications.enumerated()), id: \.element.id) { index, notification in
+                            NotificationRow(item: $notificationsManager.notifications[index], isExpanded: Binding(
+                                get: { self.expandedItemId == notification.id },
+                                set: { _ in self.expandedItemId = (self.expandedItemId == notification.id) ? nil : notification.id }
+                            ))
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 7, trailing: 0))
+                        }
+                    }
 //                    .onAppear {
 //                        notificationsManager.loadNotifications() // Call to refresh notifications
 //                    }
