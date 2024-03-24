@@ -57,7 +57,7 @@ struct NotificationPage: View {
                         id: UUID(),
                         isOn: true,
                         time: Date(),
-                        taskName: "Task Name",
+                        taskName: "",
                         description: "Task Description",
                         repeatSchedule: [.everyDay]
                     )))
